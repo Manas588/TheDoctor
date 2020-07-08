@@ -1,0 +1,69 @@
+body {
+    margin: auto 0;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 26, 48);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Speak {
+    position: fixed;
+    left: 10vw;
+    bottom: 10vh;
+    padding: 2px;
+    width: 100px;
+    height: auto;
+    background-color: rgb(4, 82, 112);
+    text-align: center;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 20px;
+}
+.Speak:hover {
+    border: 3px solid rgb(255, 255, 255);
+    background-color: rgb(3, 62, 85);
+    border-radius: 20px;
+    cursor: pointer;
+}
+#Speak {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.conversation {
+    width: 50vmax;
+    max-height: 80vh;
+    overflow: auto;
+    background-color: rgb(128, 200, 248);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.message {
+    text-transform: uppercase;
+    margin-left: 10px;
+    width:60% ;
+    border-radius: 10px;
+    align-self: flex-start;
+    background-color: rgb(3, 155, 182);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 7px;
+}
+.reply {
+    text-transform: uppercase;
+    margin-right: 10px;
+    width:60% ;
+    border-radius: 10px;
+    align-self: flex-end;
+    background-color: rgb(4, 105, 136);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 7px;
+}
