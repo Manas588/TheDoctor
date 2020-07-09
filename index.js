@@ -33,8 +33,12 @@ const reply = (message) => {
         query.shift();
         query = query.reduce((q, i)=>(q + "+" + i),"");
         const searchLink = `https://www.google.com/search?q=${query}`
-        $(".conversation").append(`<p class='reply'>Here are some results: <a href="${searchLink}" style=" color: white;">Search</a></p>`);
-        return "Here are some search results";
+        $(".conversation").append(`<p class='reply'>Here are some results for ${message.split("search")}: <a href="${searchLink}" target="_blank" style=" color: white;">Search</a></p>`);
+        window.open(searchLink, '_blank');
+        return "Here are some search results for" + message.split("search");
+    } else if( message.includes("clear")||message.includes("clean")) {
+        $(".conversation").empty();
+        return "Okay"
     }
     else {
         
@@ -43,13 +47,22 @@ const reply = (message) => {
     $(".conversation").append(`<p class='reply'>${reply}</p>`);
     return reply;
 }
-
 Recognition.onresult = ( event)=> {
+    $("#Speak").addClass("Speak");
+    $("#Speak").removeClass("loader");
+    $("#Speak").empty();
+    $("#Speak").append('<img class="speak" src="./microphone.png">');
    const transcript = event.results[event.resultIndex][0].transcript;
    $(".conversation").append(`<p class='message'>${transcript}</p>`);
    const replyk = reply(transcript);
    speakToMe(replyk);
 }
+Recognition.onaudioend = function() { 
+    $("#Speak").addClass("Speak");
+    $("#Speak").removeClass("loader");
+    $("#Speak").empty();
+    $("#Speak").append('<img class="speak" src="./microphone.png">');
+  }
 
 const speakToMe = (message) => {
     const speech = new SpeechSynthesisUtterance();
@@ -60,5 +73,8 @@ const speakToMe = (message) => {
     speech.voice = voices[4];
     window.speechSynthesis.speak(speech);
 }
-speak.addEventListener('click', () =>Recognition.start());
-
+speak.addEventListener('click', () =>{Recognition.start();
+$("#Speak").removeClass("Speak");
+$("#Speak").addClass("loader");
+$("#Speak").empty();
+});
