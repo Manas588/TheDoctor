@@ -42,20 +42,22 @@ body {
 }
 .conversation {
     width: 50vmax;
-    max-height: 80vh;
+    max-height: 60vh;
     overflow: auto;
     background-color: rgb(1, 97, 134);
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    
+    font-family: 'Indie Flower', cursive;
+    font-size: 3vmin;
+    font-weight: 600;
 }
 
 .message {
     text-transform: uppercase;
     margin-left: 10px;
-    width:60% ;
+    max-width:60% ;
     border-radius: 10px;
     align-self: flex-start;
     background-color: rgb(3, 155, 182);
@@ -66,7 +68,7 @@ body {
 .reply {
     text-transform: uppercase;
     margin-right: 10px;
-    width:60% ;
+    max-width:60% ;
     border-radius: 10px;
     align-self: flex-end;
     background-color: rgb(2, 65, 85);

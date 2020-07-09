@@ -1,3 +1,12 @@
+// const replies = require('./replies');
+const time = new Date;
+const replies ={
+    'how are you': "I am fine",
+    'what do you do': 'just some wibbly wobbly timey wimey stuff, travelling through time in my Tardis. Hangon thats not me, I am just your assistant',
+    'what is the time': `the time is ${time.getHours()} hours, ${time.getMinutes()} minutes `,
+    "what's the time": `the time is ${time.getHours()} hours, ${time.getMinutes()} minutes `,
+    "doctor who" : "exactly hahaha...",
+    }
 window.speechSynthesis.getVoices().forEach(voice=>console.log(voice.name));
 const speak = document.getElementById("Speak");
 const text = document.getElementById("display");
@@ -11,6 +20,12 @@ Recognition.onstart = () => console.log("Voice Activated");
 
 let name = document.cookie.split("=")[1]?document.cookie.split("=")[1]:"";
 
+if (name) {
+    $(".conversation").append(`<p class='reply'>Hello, ${name}</p>`);
+} else {
+$(".conversation").append(`<p class='reply'>Hello, you can start by telling me your name</p>`);
+$(".conversation").append(`<p class='reply'>Try "My name is 'your-name' " or "i am 'your-name' "  </p>`);
+}
 
 const reply = (message) => {
     message = message.toLowerCase();
@@ -32,7 +47,7 @@ const reply = (message) => {
         let query = message.split(" ");
         query.shift();
         query = query.reduce((q, i)=>(q + "+" + i),"");
-        const searchLink = `https://www.google.com/search?q=${query}`
+        let searchLink = `https://www.google.com/search?q=${query}`
         $(".conversation").append(`<p class='reply'>Here are some results for ${message.split("search")}: <a href="${searchLink}" target="_blank" style=" color: white;">Search</a></p>`);
         window.open(searchLink, '_blank');
         return "Here are some search results for" + message.split("search");
@@ -40,9 +55,31 @@ const reply = (message) => {
         $(".conversation").empty();
         return "Okay"
     }
+    else if(replies.hasOwnProperty(message)) {
+        reply = replies[message];
+    } else if(message.includes("weather")||message.includes("is it raining")||message.includes("is it sunny")) {
+        searchLink = 'https://www.google.com/search?q=weather'
+        window.open(searchLink, '_blank');
+        reply = 'Here is the current wheather';
+    } else if (message === 'open facebook') {
+        searchLink = 'https://www.facebook.com/'
+        window.open(searchLink, '_blank');
+        reply = 'opening facebook'
+    }
+    else if (message === 'open twitter') {
+        searchLink = 'https://twitter.com/';
+        window.open(searchLink, '_blank');
+        reply = 'opening twitter';
+    }
+    else if (message === 'open instagram') {
+        searchLink = 'https://www.instagram.com/'
+        window.open(searchLink, '_blank');
+        reply = 'opening instagram';
+
+    }
     else {
         
-        reply = "Sorry, I did not get that."
+        reply = "Sorry, I cannot do that."
     }
     $(".conversation").append(`<p class='reply'>${reply}</p>`);
     return reply;
@@ -78,3 +115,6 @@ $("#Speak").removeClass("Speak");
 $("#Speak").addClass("loader");
 $("#Speak").empty();
 });
+
+
+
