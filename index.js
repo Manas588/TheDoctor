@@ -128,6 +128,7 @@ speak.addEventListener('click', () =>{Recognition.start();
 $("#Speak").removeClass("Speak");
 $("#Speak").addClass("loader");
 $("#Speak").empty();
+$('#Speak').append('<img class="tardis " src="./doctor-who.png">')                                      
 });
 
 
