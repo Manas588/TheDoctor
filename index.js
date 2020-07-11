@@ -6,23 +6,30 @@ const replies ={
     'what is the time': `the time is ${time.getHours()} hours, ${time.getMinutes()} minutes `,
     "what's the time": `the time is ${time.getHours()} hours, ${time.getMinutes()} minutes `,
     "doctor who" : "exactly hahaha...",
-    "good bye": "bye, no i can't go",
-    "goodbye": "bye, no i can't go"
+    "good bye": "i don't want to go",
+    "goodbye": "i don't want to go",
+    "bye": "i don't want to go"
     }
 window.speechSynthesis.getVoices().forEach(voice=>console.log(voice.name));
 const speak = document.getElementById("Speak");
 const text = document.getElementById("display");
 
-
-$('#togglebttn').click(function() {
+const removeGuide = () => {
     $("#guide").removeClass("guide");
     $("#guide").removeClass("guideadd");
     $("#guide").addClass("guideremove");
-})
-$('#guideadd').click(function() {
+}
+
+const addGuide = () => {
     $("#guide").removeClass("guide");
     $("#guide").addClass("guideadd");
     $("#guide").removeClass("guideremove");
+}
+$('#togglebttn').click(function() {
+  removeGuide();
+})
+$('#guideadd').click(function() {
+   addGuide();
 })
 
 
@@ -40,6 +47,8 @@ if (name) {
 $(".conversation").append(`<p class='reply'>Hello, you can start by telling me your name</p>`);
 $(".conversation").append(`<p class='reply'>Try "My name is 'your-name' " or "i am 'your-name' "  </p>`);
 }
+
+let voice = 4;
 
 const reply = (message) => {
     message = message.toLowerCase();
@@ -90,6 +99,26 @@ const reply = (message) => {
         window.open(searchLink, '_blank');
         reply = 'opening instagram';
 
+    }else if (message === 'open youtube') {
+        searchLink = 'https://www.youtube.com/'
+        window.open(searchLink, '_blank');
+        reply = 'opening youtube';
+
+    } 
+    else if (message === "what can you do") {
+        addGuide();
+        return "Here's what i can do";
+    } else if (message === "close" || message === "quit") {
+        window.close();
+        return "ok";
+    } else if (message === "change voice" || message ==="change your voice") {
+        if (voice <= 10) {
+            voice++;
+        } else {
+            voice = 0;
+        }
+       
+        return "ok";
     }
     else {
         
@@ -121,15 +150,15 @@ const speakToMe = (message) => {
     speech.rate = 1;
     speech.pitch = 0.9;
     const voices = window.speechSynthesis.getVoices();
-    speech.voice = voices[4];
+    speech.voice = voices[voice];
     window.speechSynthesis.speak(speech);
 }
 speak.addEventListener('click', () =>{Recognition.start();
 $("#Speak").removeClass("Speak");
 $("#Speak").addClass("loader");
 $("#Speak").empty();
-$('#Speak').append('<img class="tardis " src="./doctor-who.png">')                                      
-});
+$('#Speak').append('<img class="tardis " src="./doctor-who.png">')
+})
 
 
 

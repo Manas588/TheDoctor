@@ -120,9 +120,6 @@ body {
   @keyframes grow {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-
-    
-    
   }
   .navigation {
       position: fixed;
@@ -148,9 +145,9 @@ body {
   }
 .navigation h4 {
     position: fixed;
-    right: 2vw;
+    right: 3vw;
     top: 1vh;
-    font-size: 1.8vmax;
+    font-size: 2vmax;
     
 }
 h4 a {

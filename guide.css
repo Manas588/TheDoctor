@@ -53,15 +53,15 @@
 
 #togglebttn {
     text-decoration: none;
-    color: white;
+    color: rgb(1, 238, 255);
     cursor: pointer;
     position: absolute;
-    right: 2vw;
-    top: 1vh;
+    right: 4vw;
+    top: 2vh;
     /* font-family: 'Grenze Gotisch', cursive; */
     font-family: 'Indie Flower', cursive;
     text-decoration: none;
-    font-size: 3vmax;
+    font-size: 3.5vmax;
 }
 
 .guide-content {
