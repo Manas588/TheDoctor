@@ -105,16 +105,16 @@ body {
     bottom: 10vh;
     height: 10vmin;
     width: 10vmin;
-    background-color: rgba(1, 48, 56, 0);
+    background-color: rgba(0, 0, 0, 0);
     cursor: pointer;
     padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 8px solid #f3f2f2d7; /* Light grey */
-    border-top: 8px solid rgb(3, 180, 250);
-    border-radius: 50%;
-    animation: grow 1s linear infinite;
+    border: 8px solid #f3f2f200;/* Light grey  */
+    /* border-top: 8px solid rgb(3, 180, 250); */
+    border-radius: 50%; 
+    animation: grow 0.8s linear infinite;
   }
   
   @keyframes grow {
@@ -175,4 +175,11 @@ footer img {
     width: 2.5vmax;
     height: auto;
     padding: 1vw;
+}
+.tardis {
+    width: 8vmin;
+    height: auto;
+    /* animation: grow 1s linear infinite; */
+    position: absolute;
+    bottom: 0;
 }
