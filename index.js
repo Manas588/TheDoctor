@@ -6,6 +6,8 @@ const replies ={
     'what is the time': `the time is ${time.getHours()} hours, ${time.getMinutes()} minutes `,
     "what's the time": `the time is ${time.getHours()} hours, ${time.getMinutes()} minutes `,
     "doctor who" : "exactly hahaha...",
+    "good bye": "bye, no i can't go",
+    "goodbye": "bye, no i can't go"
     }
 window.speechSynthesis.getVoices().forEach(voice=>console.log(voice.name));
 const speak = document.getElementById("Speak");
